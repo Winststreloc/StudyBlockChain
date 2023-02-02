@@ -12,14 +12,14 @@ namespace BlockChain_Study
             {
 
                 string cmd = Console.ReadLine();
-                if (cmd == "newblock") // создание блока с записью пользователя
+                if (cmd == "newblock")
                 {
                     Console.Write("Данные на запись: ");
                     string dat = Console.ReadLine();
                     string prevHash = Blockchain.blockchain.Last().hash;
                     Blockchain.AddBlock(dat, prevHash);
                 }
-                else if (cmd == "history") // история блока
+                else if (cmd == "history")
                 {
                     int i = 0;
                     foreach (Block blc in Blockchain.blockchain)
@@ -29,23 +29,23 @@ namespace BlockChain_Study
                     }
                 }
 
-                else if (cmd == "verfi") //реализация веривикации пользователя
+                else if (cmd == "verfi")
                 {
                     Blockchain.Verification();
                 }
-                else if (cmd == "edit") //изменения блока
+                else if (cmd == "edit")
                 {
                     int block = Convert.ToInt32(Console.ReadLine());
                     string newData = Console.ReadLine();
                     Blockchain.EDIT(block, newData);
                 }
-                else if (cmd == "save") //сохранение блока в файл
+                else if (cmd == "save")
                 {
                     Console.Write("Filename: ");
                     string filename = Console.ReadLine();
                     Blockchain.SaveBlockchain(filename);
                 }
-                else if (cmd == "load") // загрузка заранее загруженного блока
+                else if (cmd == "load")
                 {
                     Console.Write("Filename: ");
                     string filename = Console.ReadLine();

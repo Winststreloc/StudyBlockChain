@@ -12,16 +12,16 @@ namespace BlockChain_Study
     {
 
         public static List<Block> blockchain = new List<Block>();
-        static readonly int difficulity = 3;  //Это количество нулей, находящихся в начале хэша блока
-        public static void AddBlock(string data = "genesis", string prvHash = "") //В эту функцию передаются все данные для создания блока 
+        static readonly int difficulity = 3;
+        public static void AddBlock(string data = "genesis", string prvHash = "") 
         {
-            int nonce = 0; //Число, которое будет менять блокчейн для соответствия сложности
+            int nonce = 0; 
             string timestamp = Convert.ToString(DateTime.Now);
             while (true)
             {
 
-                string newHash = GetHash(timestamp, data, prvHash, nonce); //Вычисляем хэш, дополнительно передавая число сложности
-
+                string newHash = GetHash(timestamp, data, prvHash, nonce); 
+                
                 if (newHash.StartsWith(String.Concat(Enumerable.Repeat("0", difficulity))))
                 {
                     Console.WriteLine("Нашёл {0}, nonce - {1}", newHash, nonce);
@@ -29,10 +29,7 @@ namespace BlockChain_Study
 
                     break;
                 }
-                else //Иначе - считать со следующим значением nonce
-                {
-                    nonce++;
-                }
+                nonce++;
             }
 
         }
@@ -46,12 +43,12 @@ namespace BlockChain_Study
                     .Select(item => item.ToString("x2"))); ;
             }
         }
-        public static void EDIT(int block, string data) //метод редктироваия блока
+        public static void EDIT(int block, string data) 
         {
             blockchain[block].data = data;
         }
 
-        public static void Verification() // метод верификации и проверки целостности блока 
+        public static void Verification()
         {
             for (int i = 1; i != blockchain.Count; i++)
             {
